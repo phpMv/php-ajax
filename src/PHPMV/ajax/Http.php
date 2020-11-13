@@ -16,7 +16,7 @@ use PHPMV\core\Library;
  */
 class Http {
 
-	public static $axiosPrefix = 'const axios = require("axios");axios';
+	public static $axiosPrefix = 'axios';
 
 	private static $template;
 
