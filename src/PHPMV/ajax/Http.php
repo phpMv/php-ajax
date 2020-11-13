@@ -16,7 +16,7 @@ use PHPMV\core\Library;
  */
 class Http {
 
-	public static $axiosPrefix = 'axios';
+	public static $axiosPrefix = 'const axios = require("axios");axios';
 
 	private static $template;
 
@@ -38,7 +38,7 @@ class Http {
 		}
 		$result = self::$template->parse([
 			'axios-prefix' => self::$axiosPrefix,
-			'method' => $method,
+			'method' => "'$method'",
 			'url' => $url,
 			'data' => $data,
 			'successCallback' => $successCallback,
