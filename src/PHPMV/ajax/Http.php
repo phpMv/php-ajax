@@ -25,24 +25,103 @@ class Http {
 		self::$template->loadTemplatefile(Library::getTemplateFolder() . '/axios-request');
 	}
 
-	public static function request(string $method, string $url, $data, string $successCallback, string $errorCallback): string {
+	/**
+	 * Send a request.
+	 *
+	 * @param string $method
+	 * @param string $url
+	 * @param mixed $data
+	 * @param string $successCallback
+	 * @param string $errorCallback
+	 * @return string
+	 */
+	public static function request(string $method, string $url, $data = '{}', ?string $successCallback = '', ?string $errorCallback = null): string {
 		if (\strpos($url, "'") === false && \strpos($url, '$') === false && \substr($url, 0, \strlen('this')) !== 'this') {
 			$url = "'$url'";
 		}
 		$data = JsUtils::objectToJSON($data);
-		$error = "";
+		$error = '';
 		if ($errorCallback != null) {
-			$error = ",function(response) {" . $errorCallback . "}";
+			$error = ',function(response) {' . $errorCallback . '}';
 		}
 		$result = self::$template->parse([
 			'axios-prefix' => self::$axiosPrefix,
 			'method' => "'$method'",
 			'url' => $url,
-			'data' => $data,
+			'data' => $data ?? '{}',
 			'successCallback' => $successCallback,
 			'error' => $error
 		]);
 		return $result;
+	}
+
+	/**
+	 *
+	 * @param string $method
+	 * @param string $url
+	 * @param mixed $data
+	 * @param string $successCallback
+	 * @param string $errorCallback
+	 * @return string
+	 */
+	public static function get(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+		return self::request('get', $url, $data, $successCallback, $errorCallback);
+	}
+
+	/**
+	 * Send a post request.
+	 *
+	 * @param string $method
+	 * @param string $url
+	 * @param mixed $data
+	 * @param string $successCallback
+	 * @param string $errorCallback
+	 * @return string
+	 */
+	public static function post(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+		return self::request('post', $url, $data, $successCallback, $errorCallback);
+	}
+
+	/**
+	 * Send a patch request.
+	 *
+	 * @param string $method
+	 * @param string $url
+	 * @param mixed $data
+	 * @param string $successCallback
+	 * @param string $errorCallback
+	 * @return string
+	 */
+	public static function patch(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+		return self::request('patch', $url, $data, $successCallback, $errorCallback);
+	}
+
+	/**
+	 * Send a put request.
+	 *
+	 * @param string $method
+	 * @param string $url
+	 * @param mixed $data
+	 * @param string $successCallback
+	 * @param string $errorCallback
+	 * @return string
+	 */
+	public static function put(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+		return self::request('put', $url, $data, $successCallback, $errorCallback);
+	}
+
+	/**
+	 * Send a delete request.
+	 *
+	 * @param string $method
+	 * @param string $url
+	 * @param mixed $data
+	 * @param string $successCallback
+	 * @param string $errorCallback
+	 * @return string
+	 */
+	public static function delete(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+		return self::request('delete', $url, $data, $successCallback, $errorCallback);
 	}
 }
 
