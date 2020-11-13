@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "99974b72eea5f02e9cd57e55fdd9581d",
-    "packages": [],
+    "content-hash": "4b50d0edb6a6b85fbc4135460d07a3a8",
+    "packages": [
+        {
+            "name": "phpmv/php-ui-common",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpMv/php-ui-common.git",
+                "reference": "280b4e2d5728980831d1424fbf4991c63539ee8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpMv/php-ui-common/zipball/280b4e2d5728980831d1424fbf4991c63539ee8e",
+                "reference": "280b4e2d5728980831d1424fbf4991c63539ee8e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "codeception/codeception": "^4.1",
+                "codeception/module-asserts": "^1.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPMV\\": "src/PHPMV/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jean-Christophe HERON",
+                    "email": "myaddressmail@gmail.com",
+                    "role": "Lead developer"
+                }
+            ],
+            "description": "Common classes for php-ui libraries",
+            "keywords": [
+                "framework",
+                "library",
+                "php",
+                "reactjs",
+                "vuejs"
+            ],
+            "time": "2020-11-13T14:08:14+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "behat/gherkin",
@@ -3216,7 +3270,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "phpmv/php-ui-common": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

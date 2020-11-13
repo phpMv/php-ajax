@@ -11,7 +11,8 @@
         "library"
     ],
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "phpmv/php-ui-common":"dev-main"
     },
     "autoload": {
         "psr-4": {

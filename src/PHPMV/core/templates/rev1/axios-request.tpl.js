@@ -1,0 +1,1 @@
+/*axios-prefix*/[/*method*/](/*url*/, /*data*/).then(function(response){/*successCallback*/}/*error*/);
