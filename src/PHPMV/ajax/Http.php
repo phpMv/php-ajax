@@ -25,13 +25,11 @@ class Http {
 		self::$template->loadTemplatefile(Library::getTemplateFolder() . '/axios-request');
 	}
 
-	public static function request(string $method, string $url, object $data, string $successCallback, string $errorCallback): string {
+	public static function request(string $method, string $url, $data, string $successCallback, string $errorCallback): string {
 		if (\strpos($url, "'") === false && \strpos($url, '$') === false && \substr($url, 0, \strlen('this')) !== 'this') {
 			$url = "'$url'";
 		}
-		if (\is_object($data)) {
-			$data = JsUtils::objectToJSON($data);
-		}
+		$data = JsUtils::objectToJSON($data);
 		$error = "";
 		if ($errorCallback != null) {
 			$error = ",function(response) {" . $errorCallback . "}";
