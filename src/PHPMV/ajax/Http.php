@@ -1,7 +1,7 @@
 <?php
 namespace PHPMV\ajax;
 
-use PHPMV\js\JsUtils;
+use PHPMV\js\JavascriptUtils;
 use PHPMV\core\TemplateParser;
 use PHPMV\core\Library;
 
@@ -39,7 +39,7 @@ class Http {
 		if (\strpos($url, "'") === false && \strpos($url, '$') === false && \substr($url, 0, \strlen('this')) !== 'this') {
 			$url = "'$url'";
 		}
-		$data = JsUtils::objectToJSON($data);
+		$data = JavascriptUtils::objectToJSON($data);
 		$error = '';
 		if ($errorCallback != null) {
 			$error = ',function(response) {' . $errorCallback . '}';
