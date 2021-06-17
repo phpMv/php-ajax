@@ -16,9 +16,9 @@ use PHPMV\core\Library;
  */
 class Http {
 
-	public static $axiosPrefix = 'axios';
+	public static string $axiosPrefix = 'axios';
 
-	private static $template;
+	private static TemplateParser $template;
 
 	public static function init() {
 		self::$template = new TemplateParser();
@@ -32,14 +32,14 @@ class Http {
 	 * @param string $url
 	 * @param mixed $data
 	 * @param string $successCallback
-	 * @param string $errorCallback
+	 * @param ?string $errorCallback
 	 * @return string
 	 */
-	public static function request(string $method, string $url, $data = '{}', ?string $successCallback = '', ?string $errorCallback = null): string {
+	public static function request(string $method, string $url, $data = '{}', string $successCallback = '', ?string $errorCallback = null): string {
 		if (\strpos($url, "'") === false && \strpos($url, '$') === false && \substr($url, 0, \strlen('this')) !== 'this') {
 			$url = "'$url'";
 		}
-		$data = JavascriptUtils::objectToJSON($data);
+		$data = JavascriptUtils::toJSON($data);
 		$error = '';
 		if ($errorCallback != null) {
 			$error = ',function(response) {' . $errorCallback . '}';
@@ -57,70 +57,65 @@ class Http {
 
 	/**
 	 *
-	 * @param string $method
 	 * @param string $url
 	 * @param mixed $data
 	 * @param string $successCallback
-	 * @param string $errorCallback
+	 * @param ?string $errorCallback
 	 * @return string
 	 */
-	public static function get(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+	public static function get(string $url, $data = null, string $successCallback = '', ?string $errorCallback = null): string {
 		return self::request('get', $url, $data, $successCallback, $errorCallback);
 	}
 
 	/**
 	 * Send a post request.
 	 *
-	 * @param string $method
 	 * @param string $url
 	 * @param mixed $data
 	 * @param string $successCallback
-	 * @param string $errorCallback
+	 * @param ?string $errorCallback
 	 * @return string
 	 */
-	public static function post(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+	public static function post(string $url, $data = null, string $successCallback = '', ?string $errorCallback = null): string {
 		return self::request('post', $url, $data, $successCallback, $errorCallback);
 	}
 
 	/**
 	 * Send a patch request.
 	 *
-	 * @param string $method
 	 * @param string $url
 	 * @param mixed $data
 	 * @param string $successCallback
-	 * @param string $errorCallback
+	 * @param ?string $errorCallback
 	 * @return string
 	 */
-	public static function patch(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+	public static function patch(string $url, $data = null, string $successCallback = '', ?string $errorCallback = null): string {
 		return self::request('patch', $url, $data, $successCallback, $errorCallback);
 	}
 
 	/**
 	 * Send a put request.
 	 *
-	 * @param string $method
 	 * @param string $url
 	 * @param mixed $data
 	 * @param string $successCallback
-	 * @param string $errorCallback
+	 * @param ?string $errorCallback
 	 * @return string
 	 */
-	public static function put(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+	public static function put(string $url, $data = null, string $successCallback = '', ?string $errorCallback = null): string {
 		return self::request('put', $url, $data, $successCallback, $errorCallback);
 	}
 
 	/**
 	 * Send a delete request.
 	 *
-	 * @param string $method
 	 * @param string $url
 	 * @param mixed $data
 	 * @param string $successCallback
-	 * @param string $errorCallback
+	 * @param ?string $errorCallback
 	 * @return string
 	 */
-	public static function delete(string $method, string $url, $data = null, ?string $successCallback = '', ?string $errorCallback = null): string {
+	public static function delete(string $url, $data = null, string $successCallback = '', ?string $errorCallback = null): string {
 		return self::request('delete', $url, $data, $successCallback, $errorCallback);
 	}
 }
