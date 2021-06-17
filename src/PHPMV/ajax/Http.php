@@ -52,7 +52,7 @@ class Http {
 			'successCallback' => $successCallback,
 			'error' => $error
 		]);
-		return $result;
+		return 'let self=this;'.$result;
 	}
 
 	/**
